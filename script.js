@@ -17,6 +17,7 @@ $(document).ready(function(){
 		pathLogoName = $('input[type="file"]').val();
 		dateTransaction = $('input[type="date"]').val();
 		Pay = $('#Pay').val();
+		console.log(Pay);
 	
 		if (pathLogoName == "" || dateTransaction == "" || Pay == 0){
 			alert("Logo, Date and Pay are Mandatory");
