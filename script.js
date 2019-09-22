@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	$("button:eq(0)").click(function(){
 		$("table tr").first().after('<tr>'+ 
-			'<td><input type="text" class="item" placeholder="..."></td>'+
-			'<td><input type="text" class="pricePerItem" placeholder="..."></td>'+
-			'<td><input type="text" class="numberOfItem" placeholder="..."></td>'+
+			'<td><select class="item" size="1"><option value="pizza">Pizza</option><option value="hamburger">Hamburger</option><option value="hotdog">Hotdog</option></select></td>'+
+			'<td><select class="pricePerItem" size="1"><option value="10000">Rp.10.000</option><option value="20000">Rp.20.000</option><option value="30000">Rp.30.000</option></select></td>'+
+			'<td><select class="numberOfItem" size="1"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>'+
 		'</tr>');
 	});
 
