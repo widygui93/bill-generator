@@ -17,3 +17,6 @@ img {
 	 height: 100px;
 	 margin: auto;
 }
+select {
+	width: 100%;
+}
