@@ -1,0 +1,19 @@
+h1, h3 {
+	text-align: center;
+}
+body{
+	background-color: #ccc;
+}
+#Pay {
+	width: 85px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.btn {
+	margin-top: 10px;
+}
+img {
+	 width: 100px;
+	 height: 100px;
+	 margin: auto;
+}

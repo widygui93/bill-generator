@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+	<title>Bill Generator</title>
+	<meta charset="utf-8">
+	<!-- CDN JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- CDN Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<h1>Bill Generator</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<form>
+					<div class="form-group">
+						<label>Select Logo: </label>
+						<input type="file" id="SelectLogo">
+					</div>
+					<div class="form-group">
+						<label>Select Date: </label>
+						<input type="date" id="SelectDate">
+					</div>
+				</form>
+				<table class="table table-bordered">
+					<tr>
+						<th>Name Item <button type="button">Add</button></td>
+						<th>Price per Item</td>
+						<th>Number of Item</td>
+					</tr>
+				</table>
+				<form class="form-inline">
+					<div class="form-group">
+						<label>Payment: </label>
+						<input type="text" id="Pay" class="form-control" placeholder="Rp.0">
+					</div>
+				</form>
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-primary">View</button>
+					<button type="button" class="btn btn-success">Print</button>
+				</div>
+			</div>
+			<div class="col">
+				<h3>Bill Display</h3>
+				<div id="billDisplay"></div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
