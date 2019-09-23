@@ -1,9 +1,27 @@
 $(document).ready(function(){
 	$("button:eq(0)").click(function(){
 		$("table tr").first().after('<tr>'+ 
-			'<td><select class="item" size="1"><option value="pizza">Pizza</option><option value="hamburger">Hamburger</option><option value="hotdog">Hotdog</option></select></td>'+
-			'<td><select class="pricePerItem" size="1"><option value="10000">Rp.10.000</option><option value="20000">Rp.20.000</option><option value="30000">Rp.30.000</option></select></td>'+
-			'<td><select class="numberOfItem" size="1"><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></td>'+
+			'<td>'+
+				'<select class="item" size="1">'+
+					'<option value="pizza">Pizza</option>'+
+					'<option value="hamburger">Hamburger</option>'+
+					'<option value="hotdog">Hotdog</option>'+
+				'</select>'+
+			'</td>'+
+			'<td>'+
+				'<select class="pricePerItem" size="1">'+
+					'<option value="10000">Rp.10.000</option>'+
+					'<option value="20000">Rp.20.000</option>'+
+					'<option value="30000">Rp.30.000</option>'+
+				'</select>'+
+			'</td>'+
+			'<td>'+
+				'<select class="numberOfItem" size="1">'+
+					'<option value="1">1</option>'+
+					'<option value="2">2</option>'+
+					'<option value="3">3</option>'+
+				'</select>'+
+			'</td>'+
 		'</tr>');
 	});
 
@@ -23,6 +41,10 @@ $(document).ready(function(){
 		} else {
 			clearElementInBillDisplayAndInitialVariables()
 
+			pushValueIntoEachArray()
+
+			calculatePayment()
+
 			$("#billDisplay").prepend("<p>Date of transaction: "+dateTransaction+"</p>");
 			
 			// split the string into array with delimiter \
@@ -31,7 +53,7 @@ $(document).ready(function(){
 			// the logo name is always in array with index 2
 			$("#billDisplay").prepend('<img src="img/'+logoName[2]+'">');
 
-			$("#billDisplay").append('<table class="table table-borderless">'+
+			$("#billDisplay").append('<table class="table table-bordered">'+
 				'<tr>'+
 					'<th>Name Item</th>'+
 					'<th>Price Per Item</th>'+
@@ -40,29 +62,42 @@ $(document).ready(function(){
 				'</tr>'+
 			'</table>');
 
-			pushValueIntoEachArray()
-
 			for(let i=0; i < nameItem.length; i++){
 				$("#billDisplay table").append('<tr>'+
 					'<td>'+nameItem[i]+'</td>'+
-					'<td>'+pricePerItem[i]+'</td>'+
+					'<td> Rp.'+pricePerItem[i]+'</td>'+
 					'<td>'+numberOfItem[i]+'</td>'+
-					'<td>'+costOfItem[i]+'</td>'+
+					'<td> Rp.'+costOfItem[i]+'</td>'+
 				'</tr>');
 			}
 
-			calculatePayment()
-
 			$("#billDisplay").append('<div>'+
-				'<p> Sub Total: '+subPay+'</p>'+
-				'<p> Tax(10%): '+Tax+'</p>'+
-				'<p> Total: '+Total+'</p>'+
-				'<p> Payment: '+Pay+'</p>'+
-				'<p> Changes: '+changes+'</p>'+
+				'<p> Sub Total: Rp.'+subPay+'</p>'+
+				'<p> Tax(10%): Rp.'+Tax+'</p>'+
+				'<p> Total: Rp.'+Total+'</p>'+
+				'<p> Payment: Rp.'+Pay+'</p>'+
+				'<p> Changes: Rp.'+changes+'</p>'+
 			'</div>');
 		}
 	});
 	
+	function putDotSeperator(){
+
+		subPay = subPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		Tax = Tax.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		Total = Total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		Pay = Pay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		changes = changes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+		for(let i=0; i<pricePerItem.length; i++){
+			pricePerItem[i] = pricePerItem[i].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		}
+
+		for(let i=0; i<costOfItem.length; i++){
+			costOfItem[i] = costOfItem[i].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+		}
+	}
+
 	function calculatePayment(){
 		for(let i=0; i < costOfItem.length; i++){
 			subPay = subPay + costOfItem[i];
@@ -70,6 +105,8 @@ $(document).ready(function(){
 		Tax = subPay * 0.1;
 		Total = subPay + Tax;
 		changes = Pay - Total;
+
+		putDotSeperator()
 	}
 
 	function clearElementInBillDisplayAndInitialVariables(){
