@@ -71,13 +71,13 @@ $(document).ready(function(){
 				'</tr>');
 			}
 
-			$("#billDisplay").append('<div>'+
-				'<p> Sub Total: Rp.'+subPay+'</p>'+
-				'<p> Tax(10%): Rp.'+Tax+'</p>'+
-				'<p> Total: Rp.'+Total+'</p>'+
-				'<p> Payment: Rp.'+Pay+'</p>'+
-				'<p> Changes: Rp.'+changes+'</p>'+
-			'</div>');
+			$("#billDisplay").append('<ul class="list-group list-group-horizontal">'+
+				'<li class="list-group-item">Sub Total: Rp.'+subPay+'</li>'+
+				'<li class="list-group-item">Tax(10%): Rp.'+Tax+'</li>'+
+				'<li class="list-group-item">Total: Rp.'+Total+'</li>'+
+				'<li class="list-group-item">Payment: Rp.'+Pay+'</li>'+
+				'<li class="list-group-item">Changes: Rp.'+changes+'</li>'+
+			'</ul>');
 		}
 	});
 	
