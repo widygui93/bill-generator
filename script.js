@@ -36,8 +36,8 @@ $(document).ready(function(){
 		dateTransaction = $('input[type="date"]').val();
 		Pay = $('#Pay').val();
 	
-		if (pathLogoName == "" || dateTransaction == "" || Pay == 0){
-			alert("Logo, Date and Pay are Mandatory");
+		if (pathLogoName == "" || dateTransaction == "" || Pay == 0 || $("select").length == 0){
+			alert("Logo, Date, Pay and Items are Mandatory");
 		} else {
 			clearElementInBillDisplayAndInitialVariables()
 
