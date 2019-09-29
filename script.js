@@ -138,4 +138,34 @@ $(document).ready(function(){
 			costOfItem.push(pricePerItem[i] * numberOfItem[i]);
 		}
 	}
+
+	$("button:eq(2)").click(function() {
+	
+		let WinPrint = window.open('', '', 'left=0,top=0,width=800,height=500,toolbar=0,scrollbars=1,status=0');
+
+		WinPrint.document.head.innerHTML = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">'+
+		'<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>'+
+		'<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>'+
+		'<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>';
+
+		WinPrint.document.body.innerHTML = $("#billDisplay").html();
+		
+		// WinPrint.document.body.appendChild("<button onclick='myFunction()'>Confirm</button>");
+		let para = WinPrint.document.createElement("button");
+		let node = WinPrint.document.createTextNode("Confirm");
+		para.appendChild(node);
+		WinPrint.document.body.appendChild(para);
+
+		WinPrint.document.getElementsByTagName("button")[0].setAttribute("onclick","window.print()");
+
+		// $("WinPrint.document.body")
+
+
+
+		// WinPrint.document.body.append('<button>confirm</button>');
+		// WinPrint.append("<button>confirm print</button>");
+		// WinPrint.close();
+		// WinPrint.print();
+	});
+
 });
