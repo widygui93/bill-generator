@@ -3,9 +3,9 @@ $(document).ready(function(){
 		$("table tr").first().after('<tr>'+ 
 			'<td>'+
 				'<select class="item" size="1">'+
-					'<option value="pizza">Pizza</option>'+
-					'<option value="hamburger">Hamburger</option>'+
-					'<option value="hotdog">Hotdog</option>'+
+					'<option value="Pizza">Pizza</option>'+
+					'<option value="Hamburger">Hamburger</option>'+
+					'<option value="Hotdog">Hotdog</option>'+
 				'</select>'+
 			'</td>'+
 			'<td>'+
@@ -35,7 +35,6 @@ $(document).ready(function(){
 		pathLogoName = $('input[type="file"]').val();
 		dateTransaction = $('input[type="date"]').val();
 		Pay = $('#Pay').val();
-		console.log(Pay);
 	
 		if (pathLogoName == "" || dateTransaction == "" || Pay == 0 || $("select").length == 0){
 			alert("Logo, Date, Pay and Items are Mandatory");
@@ -52,9 +51,9 @@ $(document).ready(function(){
 			// "\\" is the escape character for \
 			let logoName = pathLogoName.split("\\");
 			// the logo name is always in array with index 2
-			$("#billDisplay").prepend('<img src="img/'+logoName[2]+'">');
+			$("#billDisplay").prepend('<div id="divLogo"><img src="img/'+logoName[2]+'"></div>'); 
 
-			$("#billDisplay").append('<table class="table table-bordered">'+
+			$("#billDisplay").append('<table class="table table-striped">'+
 				'<tr>'+
 					'<th>Name Item</th>'+
 					'<th>Price Per Item</th>'+
@@ -79,6 +78,8 @@ $(document).ready(function(){
 				'<li class="list-group-item">Payment: Rp.'+Pay+'</li>'+
 				'<li class="list-group-item">Changes: Rp.'+changes+'</li>'+
 			'</ul>');
+
+			$("#billDisplay").append('<p>Thank you for your visit.</p>');
 		}
 	});
 	
@@ -141,32 +142,19 @@ $(document).ready(function(){
 	}
 
 	$("button:eq(2)").click(function() {
-	
-		let WinPrint = window.open('', '', 'left=0,top=0,width=800,height=500,toolbar=0,scrollbars=1,status=0');
+		    
+	    let w = window.open('', '', 'left=0,top=0,width=800,height=500,toolbar=0,scrollbars=1,status=0');
 
-		WinPrint.document.head.innerHTML = '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">'+
+		let billDisplayContent = $("#billDisplay").html();
+	    w.document.write(billDisplayContent);
+	    w.document.head.innerHTML = 
+		'<meta charset="utf-8">'+
+		'<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">'+
 		'<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>'+
 		'<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>'+
-		'<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>';
+		'<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>'+
+		'<style> img { width: 100px; height: 100px; } p { text-align: center; } #divLogo { width: 100%; text-align: center; } </style>';
 
-		WinPrint.document.body.innerHTML = $("#billDisplay").html();
-		
-		// WinPrint.document.body.appendChild("<button onclick='myFunction()'>Confirm</button>");
-		let para = WinPrint.document.createElement("button");
-		let node = WinPrint.document.createTextNode("Confirm");
-		para.appendChild(node);
-		WinPrint.document.body.appendChild(para);
-
-		WinPrint.document.getElementsByTagName("button")[0].setAttribute("onclick","window.print()");
-
-		// $("WinPrint.document.body")
-
-
-
-		// WinPrint.document.body.append('<button>confirm</button>');
-		// WinPrint.append("<button>confirm print</button>");
-		// WinPrint.close();
-		// WinPrint.print();
+	    w.setTimeout(function(){ w.window.print(); }, 1000);
 	});
-
 });
